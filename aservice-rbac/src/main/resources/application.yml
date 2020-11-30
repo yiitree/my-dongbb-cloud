@@ -1,0 +1,23 @@
+server:
+  port: 8401
+
+spring:
+  application:
+    name: aservice-rbac
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://123.56.169.21:3306/linnadb?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: linna
+    password: d%r2Tz08
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# debug: true
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+

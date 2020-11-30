@@ -1,0 +1,6 @@
+server:
+  port: 8402
+
+spring:
+  application:
+    name: aservice-sms
