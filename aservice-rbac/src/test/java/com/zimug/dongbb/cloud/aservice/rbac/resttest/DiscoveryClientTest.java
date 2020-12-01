@@ -9,6 +9,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import javax.annotation.Resource;
 import java.util.List;
 
+
+/**
+ * 服务发现测试
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class DiscoveryClientTest {
