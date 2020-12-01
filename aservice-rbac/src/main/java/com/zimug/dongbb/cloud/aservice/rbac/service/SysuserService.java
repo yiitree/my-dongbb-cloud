@@ -3,6 +3,7 @@ package com.zimug.dongbb.cloud.aservice.rbac.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zimug.dongbb.cloud.aservice.rbac.config.DbLoadSysConfig;
+import com.zimug.dongbb.cloud.aservice.rbac.feign.SmsService;
 import com.zimug.dongbb.cloud.starter.persistence.auto.mapper.SysUserMapper;
 import com.zimug.dongbb.cloud.starter.persistence.auto.model.SysUser;
 import com.zimug.dongbb.cloud.starter.persistence.auto.model.SysUserExample;
@@ -21,6 +22,11 @@ import java.util.List;
 @Service
 public class SysuserService {
 
+    /**
+     * 发送短信
+     */
+    @Resource
+    private SmsService smsService;
     @Resource
     private SysUserMapper sysUserMapper;
     @Resource
@@ -94,14 +100,22 @@ public class SysuserService {
       throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,
         "重置密码必须带主键");
     }else{
-      SysUser sysUser = new SysUser();
-      sysUser.setId(userId);
 
-      sysUser.setPassword(passwordEncoder.encode(
-        dbLoadSysConfig.getConfigItem("user.init.password")
-      ));
+//        SysUser sysUser = new SysUser();
+//      sysUser.setId(userId);
 
-      sysUserMapper.updateByPrimaryKeySelective(sysUser);
+//      sysUser.setPassword(passwordEncoder.encode(
+//        dbLoadSysConfig.getConfigItem("user.init.password")
+//      ));
+//
+//      sysUserMapper.updateByPrimaryKeySelective(sysUser);
+        SysUser sysUser = sysUserMapper.selectByPrimaryKey(userId);
+        String defaultPwd = dbLoadSysConfig.getConfigItem("user.init.password");
+        sysUser.setPassword(passwordEncoder.encode(defaultPwd));
+
+        sysUserMapper.updateByPrimaryKeySelective(sysUser);
+        // 修改成发送短信
+        smsService.send(sysUser.getPhone(),"您好，管理员已经将您的密码重置为" + defaultPwd);
     }
   }
 

@@ -12,9 +12,11 @@
     <modules>
         <module>aservice-rbac</module>
         <module>aservice-sms</module>
+        <!-- 通用模块common -->
         <module>zimug-web-spring-boot-starter</module>
-        <module>zimug-server-eureka</module>
+        <!-- 持久层模块 -->
         <module>dbcloud-persistence-spring-boot-starter</module>
+        <module>zimug-server-eureka</module>
     </modules>
 
     <properties>
@@ -26,6 +28,19 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- 通用模块（内部模块） -->
+            <dependency>
+                <groupId>com.zimug.dongbb.cloud</groupId>
+                <artifactId>zimug-web-spring-boot-starter</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <!-- 持久层模块（内部模块） -->
+            <dependency>
+                <groupId>com.zimug.dongbb.cloud</groupId>
+                <artifactId>dbcloud-persistence-spring-boot-starter</artifactId>
+                <version>1.0</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -41,16 +56,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>com.zimug.dongbb.cloud</groupId>
-                <artifactId>zimug-web-spring-boot-starter</artifactId>
-                <version>1.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zimug.dongbb.cloud</groupId>
-                <artifactId>dbcloud-persistence-spring-boot-starter</artifactId>
-                <version>1.0</version>
-            </dependency>
+
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
