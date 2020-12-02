@@ -6,10 +6,26 @@ server:
 spring:
   application:
     name: eureka-server
+  # 增加登录密码，设置登录密码
+  security:
+    user:
+      name: root
+      password: root
+  # 多网卡环境绑定网卡
+#  cloud:
+#    inetutils:
+#      preferredNetworks:
+#        - 192.168
+#      ignoredInterfaces:
+#        - enp0s3
+#        - docker0
 
 eureka:
   instance:
     hostname: peer3
+    # 不使用hostname，使用ip
+    instance-id: ${spring.application.name}-${eureka.instance.hostname}:${server.port}
+    # 健康检查路径，是因为设置了context-path。默认的健康检查路径是以“/”
     health-check-url: http://${eureka.instance.hostname}:${server.port}/${server.servlet.context-path}/actuator/health
   client:
     #从其他两个实例同步服务注册信息
@@ -17,7 +33,8 @@ eureka:
     #向其他的两个eureka注册当前eureka实例
     register-with-eureka: true
     service-url:
-      defaultZone: http://peer1:8761/eureka/eureka/,http://peer2:8761/eureka/eureka/
+      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/
+
   # 开启eureka自我保护
   server:
     #    # 自我保护模式，当出现网络分区故障、频繁的开启关闭客户端、eureka在短时间内丢失过多客户端时，会进入自我保护模式，即一个服务长时间没有发送心跳，eureka也不会将其删除，默认为true

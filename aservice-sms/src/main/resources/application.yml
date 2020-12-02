@@ -9,8 +9,7 @@ spring:
 eureka:
   client:
     service-url:
-#      defaultZone: http://zimug:centerpwd@peer1:8761/eureka/eureka/,http://zimug:centerpwd@peer2:8761/eureka/eureka/,http://zimug:centerpwd@peer3:8761/eureka/eureka/
-      defaultZone: http://zimug:centerpwd@127.0.0.1:8761/eureka/eureka/
+      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
   # 心跳检测检测与续约时间
   # 测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
   instance:
@@ -18,3 +17,4 @@ eureka:
     lease-renewal-interval-in-seconds: 5  #默认30秒
     # 告诉服务端，如果我10s之内没有给你发心跳，就代表我“死”了，请将我踢掉。
     lease-expiration-duration-in-seconds: 10   #默认90秒
+

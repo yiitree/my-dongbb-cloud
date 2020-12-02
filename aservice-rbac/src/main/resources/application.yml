@@ -28,7 +28,8 @@ mybatis:
 eureka:
   client:
     service-url:
-      defaultZone: http://zimug:centerpwd@peer1:8761/eureka/eureka/,http://zimug:centerpwd@peer2:8761/eureka/eureka/,http://zimug:centerpwd@peer3:8761/eureka/eureka/
+      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
+  #      defaultZone: http://zimug:centerpwd@127.0.0.1:8761/eureka/eureka/
   # 心跳检测检测与续约时间
   # 测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
   instance:
