@@ -17,6 +17,7 @@
         <!-- 持久层模块 -->
         <module>dbcloud-persistence-spring-boot-starter</module>
         <module>zimug-server-eureka</module>
+        <module>zsdemo-apollo-javaclient</module>
     </modules>
 
     <properties>

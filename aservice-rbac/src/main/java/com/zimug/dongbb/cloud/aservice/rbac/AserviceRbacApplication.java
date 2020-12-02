@@ -1,5 +1,6 @@
 package com.zimug.dongbb.cloud.aservice.rbac;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import feign.Logger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -24,9 +25,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 //@EnableEurekaClient
 // 服务发现，通用方式，其他注册中心也可以用
 @EnableDiscoveryClient
-
 // 开启openFeign远程调用
 @EnableFeignClients
+// 启动apollo
+@EnableApolloConfig
 public class AserviceRbacApplication {
 
 	public static void main(String[] args) {

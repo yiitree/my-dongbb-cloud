@@ -1,63 +1,76 @@
-server:
-  port: 8401
-
-spring:
-  application:
-    name: aservice-rbac
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
-  datasource:
-    url: jdbc:mysql://123.56.169.21:3306/linnadb?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: linna
-    password: d%r2Tz08
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  # ribbon的重试机制
-  cloud:
-    loadbalancer:
-      retry:
-        enabled: true
-
-# debug: true
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-# eureka配置
-eureka:
-  client:
-    service-url:
-      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
-  #      defaultZone: http://zimug:centerpwd@127.0.0.1:8761/eureka/eureka/
-  # 心跳检测检测与续约时间
-  # 测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
-  instance:
-    # 每间隔5s，向服务端发送一次心跳，证明自己依然”存活“。
-    lease-renewal-interval-in-seconds: 5  #默认30秒
-    # 告诉服务端，如果我10s之内没有给你发心跳，就代表我“死”了，请将我踢掉。
-    lease-expiration-duration-in-seconds: 10   #默认90秒
-
-# 设置ribbon负载均衡策略
-#aservice-rbac:
-#  ribbon:
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
-#    自定义的负载策略
-#    NFLoadBalancerRuleClassName: com.zimug.dongbb.cloud.aservice.rbac.config.MyLoadBanlanceRule
-
-# 饥饿加载
-# 在启动的时候就会去加载Ribbon Client及被调用服务上下文，从而在实际发送请求的时候就可以直接使用，从而提高第一次服务请求的访问速
-ribbon:
-  eager-load:
-    enabled: true   #开启饥饿加载
-    clients: aservice-sms  #饥饿加载的服务
-
-# 配置日志等级 Feign客户端的DEBUG日志
-logging:
-  level:
-    com.zimug.dongbb.cloud.aservice.rbac.feign.SmsService: debug
-
-# 设置feign的客户端
-feign:
-  okhttp:
+app:
+  # appid要与apollo服务配置中心新建项目时候，配置的appid一致
+  id: dongbb-cloud-aservice-rbac
+apollo:
+  # 表示在应用一启动的时候，就去加载配置信息
+  bootstrap:
     enabled: true
+    # 配置公共属性
+    namespaces: application,yanfa.eureka-client
+  # 当apollo客户端从apollo-env.properties配置的configservice无法取得连接时，会找apollo.meta配置信息去获取连接。所以它是起到一个备份的作用（我们目前只搭建了DEV环境，就和dev.meta配置一样就可以）
+  meta: http://192.168.1.60:9431,http://192.168.1.61:9431,http://192.168.1.62:9431
+
+
+#server:
+#  port: 8401
+#
+#spring:
+#  application:
+#    name: aservice-rbac
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+8
+#  datasource:
+#    url: jdbc:mysql://123.56.169.21:3306/linnadb?useUnicode=true&characterEncoding=utf-8&useSSL=false
+#    username: linna
+#    password: d%r2Tz08
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  # ribbon的重试机制
+#  cloud:
+#    loadbalancer:
+#      retry:
+#        enabled: true
+#
+## debug: true
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#
+## eureka配置
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
+#  #      defaultZone: http://zimug:centerpwd@127.0.0.1:8761/eureka/eureka/
+#  # 心跳检测检测与续约时间
+#  # 测试时将值设置设置小些，保证服务关闭后注册中心能及时踢出服务
+#  instance:
+#    # 每间隔5s，向服务端发送一次心跳，证明自己依然”存活“。
+#    lease-renewal-interval-in-seconds: 5  #默认30秒
+#    # 告诉服务端，如果我10s之内没有给你发心跳，就代表我“死”了，请将我踢掉。
+#    lease-expiration-duration-in-seconds: 10   #默认90秒
+#
+## 设置ribbon负载均衡策略
+##aservice-rbac:
+##  ribbon:
+##    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+##    自定义的负载策略
+##    NFLoadBalancerRuleClassName: com.zimug.dongbb.cloud.aservice.rbac.config.MyLoadBanlanceRule
+#
+## 饥饿加载
+## 在启动的时候就会去加载Ribbon Client及被调用服务上下文，从而在实际发送请求的时候就可以直接使用，从而提高第一次服务请求的访问速
+#ribbon:
+#  eager-load:
+#    enabled: true   #开启饥饿加载
+#    clients: aservice-sms  #饥饿加载的服务
+#
+## 配置日志等级 Feign客户端的DEBUG日志
+#logging:
+#  level:
+#    com.zimug.dongbb.cloud.aservice.rbac.feign.SmsService: debug
+#
+## 设置feign的客户端
+#feign:
+#  okhttp:
+#    enabled: true
