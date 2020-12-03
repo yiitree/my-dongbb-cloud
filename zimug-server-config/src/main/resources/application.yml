@@ -10,8 +10,8 @@ spring:
         git:
           uri: https://github.com/yiitree/my-dongbb-cloud
           searchPaths: zimug-server-config-repo
-          username: 772701414@qq.com
-          password: Rui0530_git
+          username: xxx
+          password: xxx
   security:
     basic:
       enabled: true  #启用基本认证(默认)
