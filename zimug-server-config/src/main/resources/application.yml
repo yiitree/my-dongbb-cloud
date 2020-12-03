@@ -8,13 +8,13 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/hanxt/dongbb-cloud
+          uri: https://github.com/yiitree/my-dongbb-cloud
           searchPaths: zimug-server-config-repo
-          username:
-          password:
+          username: xx
+          password: xx
   security:
     basic:
       enabled: true  #启用基本认证(默认)
     user:
-      name: zimug   #自定义登录用户名
-      password: pwd123456  #自定义登录密码
+      name: root   #自定义登录用户名
+      password: root  #自定义登录密码

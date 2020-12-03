@@ -5,8 +5,8 @@ spring:
     config:
       label: master
       profile: dev
-      username: zimug
-      password: pwd123456
+      username: root
+      password: root
       discovery:
         enabled: true  # 开启
         service-id: zimug-server-config # 指定配置中心服务端的server-id
