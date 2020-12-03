@@ -78,5 +78,5 @@ management:
 # 用户密码初始值
 user:
   init:
-    password: 12345678
+    password: 123456789999
 
