@@ -124,7 +124,6 @@ public class SysuserService {
 //        String defaultPwd = dbLoadSysConfig.getConfigItem("user.init.password");
         // 使用配置文件中的密码初始值
         sysUser.setPassword(passwordEncoder.encode(defaultPwd));
-
         sysUserMapper.updateByPrimaryKeySelective(sysUser);
         // 修改成发送短信
         smsService.send(sysUser.getPhone(),"您好，管理员已经将您的密码重置为" + defaultPwd);

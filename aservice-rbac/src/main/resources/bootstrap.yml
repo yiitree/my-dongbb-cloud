@@ -4,12 +4,13 @@ spring:
   cloud:
     config:
       # 对应前配置文件的git分支
-      label: master
+      label: springcloud
       # 对应前配置文件中的{profile}部分
       profile: dev
       # config中springsecurity安全认证
       username: root
       password: root
+#      uri: http://localhost:8771
       discovery:
         enabled: true  # 开启
         service-id: zimug-server-config # 指定配置中心服务端的server-id
@@ -17,8 +18,8 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://zimug:centerpwd@peer1:8761/eureka/eureka/,http://zimug:centerpwd@peer2:8761/eureka/eureka/,http://zimug:centerpwd@peer3:8761/eureka/eureka/
-  instance:
-    preferIpAddress: true
+      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
+#  instance:
+#    preferIpAddress: true
 
 

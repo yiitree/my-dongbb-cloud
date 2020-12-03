@@ -3,7 +3,7 @@ spring:
     name: aservice-sms
   cloud:
     config:
-      label: master
+      label: springcloud
       profile: dev
       username: root
       password: root
@@ -14,6 +14,6 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://zimug:centerpwd@peer1:8761/eureka/eureka/,http://zimug:centerpwd@peer2:8761/eureka/eureka/,http://zimug:centerpwd@peer3:8761/eureka/eureka/
+      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
   instance:
     preferIpAddress: true

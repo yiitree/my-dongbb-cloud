@@ -10,11 +10,20 @@ spring:
         git:
           uri: https://github.com/yiitree/my-dongbb-cloud
           searchPaths: zimug-server-config-repo
-          username: xx
-          password: xx
+          username: 772701414@qq.com
+          password: Rui0530_git
   security:
     basic:
       enabled: true  #启用基本认证(默认)
     user:
       name: root   #自定义登录用户名
       password: root  #自定义登录密码
+
+eureka:
+  client:
+    serviceUrl:
+      register-with-eureka: true
+      fetch-registry: true
+      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
+  instance:
+    preferIpAddress: true

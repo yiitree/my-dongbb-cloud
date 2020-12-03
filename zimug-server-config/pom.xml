@@ -35,11 +35,11 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-<!--        &lt;!&ndash; eureka client 端包 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
-<!--        </dependency>-->
+        <!-- eureka client 端包 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
