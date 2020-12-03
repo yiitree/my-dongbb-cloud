@@ -1,0 +1,24 @@
+server:
+  port: 8402
+
+spring:
+  application:
+    name: aservice-sms
+#  cloud:
+#    inetutils:
+#      preferredNetworks:
+#        - 192.168
+#      ignored-interfaces:
+#        - .*VirtualBox.*
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
+
+
+feign:
+  okhttp:
+    enabled: true
