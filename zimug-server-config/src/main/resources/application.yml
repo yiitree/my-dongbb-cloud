@@ -18,6 +18,21 @@ spring:
     user:
       name: root   #自定义登录用户名
       password: root  #自定义登录密码
+  # rabbitmq
+  rabbitmq:
+    host: 192.168.1.60
+    port: 5672
+    username: root
+    password: root
+
+# 单独暴露bus-refresh是不生效的（访问结果是405）
+management:
+  endpoints:
+    web:
+      exposure:
+        include:  "*"
+#      exposure:
+#        include:  bus-refresh
 
 eureka:
   client:
@@ -27,3 +42,4 @@ eureka:
       defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
   instance:
     preferIpAddress: true
+

@@ -37,6 +37,18 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!--添加基于RabbitMQ的Spring Cloud Bus的支持 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+
+        <!--在Spring Boot2.0版本需要actuator提供刷新请求接口：“/actuator/bus-refresh” -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
 	</dependencies>
 
 
