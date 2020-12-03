@@ -17,6 +17,9 @@
         <!-- 持久层模块 -->
         <module>dbcloud-persistence-spring-boot-starter</module>
         <module>zimug-server-eureka</module>
+        <!-- 配置中心 -->
+        <module>zimug-server-config</module>
+
     </modules>
 
     <properties>

@@ -11,6 +11,8 @@ import com.zimug.dongbb.cloud.starter.persistence.rbac.mapper.SystemMapper;
 import com.zimug.dongbb.cloud.starter.persistence.rbac.model.SysUserOrg;
 import com.zimug.dongbb.cloud.starter.web.exception.CustomException;
 import com.zimug.dongbb.cloud.starter.web.exception.CustomExceptionType;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -19,8 +21,17 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
+// 配置文件刷新
+@RefreshScope
 @Service
 public class SysuserService {
+
+
+    /**
+     * 密码初始值
+     */
+    @Value("${user.init.password}")
+    private String defaultPwd;
 
     /**
      * 发送短信
@@ -110,7 +121,8 @@ public class SysuserService {
 //
 //      sysUserMapper.updateByPrimaryKeySelective(sysUser);
         SysUser sysUser = sysUserMapper.selectByPrimaryKey(userId);
-        String defaultPwd = dbLoadSysConfig.getConfigItem("user.init.password");
+//        String defaultPwd = dbLoadSysConfig.getConfigItem("user.init.password");
+        // 使用配置文件中的密码初始值
         sysUser.setPassword(passwordEncoder.encode(defaultPwd));
 
         sysUserMapper.updateByPrimaryKeySelective(sysUser);

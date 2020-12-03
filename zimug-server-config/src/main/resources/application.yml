@@ -1,0 +1,20 @@
+server:
+  port: 8771
+
+spring:
+  application:
+    name: zimug-server-config  #config server项目名称
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/hanxt/dongbb-cloud
+          searchPaths: zimug-server-config-repo
+          username:
+          password:
+  security:
+    basic:
+      enabled: true  #启用基本认证(默认)
+    user:
+      name: zimug   #自定义登录用户名
+      password: pwd123456  #自定义登录密码
