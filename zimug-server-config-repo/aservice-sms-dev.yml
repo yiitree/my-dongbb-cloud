@@ -18,3 +18,9 @@ eureka:
     # 告诉服务端，如果我10s之内没有给你发心跳，就代表我“死”了，请将我踢掉。
     lease-expiration-duration-in-seconds: 10   #默认90秒
 
+# 表示我们只开放配置刷新接口和健康检查接口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health

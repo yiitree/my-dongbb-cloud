@@ -3,8 +3,9 @@ spring:
     name: aservice-sms
   cloud:
     config:
-      label: springcloud
+      label: springconfig
       profile: dev
+      # 连接springconfig自带密码
       username: root
       password: root
       discovery:

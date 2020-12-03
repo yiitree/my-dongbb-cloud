@@ -4,10 +4,10 @@ spring:
   cloud:
     config:
       # 对应前配置文件的git分支
-      label: springcloud
+      label: springconfig
       # 对应前配置文件中的{profile}部分
       profile: dev
-      # config中springsecurity安全认证
+      # springconfig中springsecurity安全认证
       username: root
       password: root
 #      uri: http://localhost:8771
@@ -19,7 +19,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
-#  instance:
-#    preferIpAddress: true
+  instance:
+    preferIpAddress: true
 
 
