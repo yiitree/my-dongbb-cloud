@@ -5,7 +5,10 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("ASERVICE-SMS")
+// eureka大写
+//@FeignClient("ASERVICE-SMS")
+// nacos保持一致
+@FeignClient("aservice-sms")
 public interface SmsService {
 
   @PostMapping(value = "/sms/send")

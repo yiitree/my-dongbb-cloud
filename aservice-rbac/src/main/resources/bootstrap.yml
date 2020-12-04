@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: aservice-rbac
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.60:8848
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        extension-configs:
+          - data-id: aservice-rbac-dev.yaml
+            group: ZIMUG_GROUP
+            refresh: true
+          - data-id: common-datasource.yaml
+            group: DEFAULT_GROUP
+            refresh: false

@@ -69,6 +69,15 @@
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>1.2.10</version>
             </dependency>
+
+            <!-- 在父项目中加入alibaba项目版本管理依赖-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.2.1.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
