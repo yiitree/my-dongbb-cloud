@@ -68,3 +68,7 @@
 #feign:
 #  okhttp:
 #    enabled: true
+
+#user:
+#  init:
+#    password: 666666

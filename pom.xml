@@ -70,7 +70,7 @@
                 <version>1.2.10</version>
             </dependency>
 
-            <!-- 在父项目中加入alibaba项目版本管理依赖-->
+            <!-- 在父项目中加入alibaba项目版本管理依赖 nacos -->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
