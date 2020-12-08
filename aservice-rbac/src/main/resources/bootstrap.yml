@@ -21,5 +21,3 @@ eureka:
       defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
   instance:
     preferIpAddress: true
-
-

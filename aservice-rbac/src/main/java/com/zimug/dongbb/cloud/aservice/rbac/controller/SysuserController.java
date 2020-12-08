@@ -1,6 +1,8 @@
 package com.zimug.dongbb.cloud.aservice.rbac.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.zimug.dongbb.cloud.aservice.rbac.service.SysuserService;
 import com.zimug.dongbb.cloud.starter.persistence.auto.model.SysUser;
 import com.zimug.dongbb.cloud.starter.persistence.rbac.model.SysUserOrg;
@@ -52,13 +54,25 @@ public class SysuserController {
     return AjaxResponse.success("新增用户成功！");
   }
 
+  // 添加熔断注解，走全局配置
+  @HystrixCommand
   @PostMapping(value = "/delete")
   public AjaxResponse delete(@RequestParam Integer userId) {
     sysuserService.deleteUser(userId);
     return AjaxResponse.success("删除用户成功!");
   }
 
+  // 在方法上添加注解
   @PostMapping(value = "/pwd/reset")
+  @HystrixCommand(
+      commandProperties = {
+          @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"), //统计窗口时间
+          @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),  //启用熔断功能
+          @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "20"),  //20个请求失败触发熔断
+          @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),  //请求错误率超过60%触发熔断
+          @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "300000"),//熔断后开始尝试恢复的时间
+      }
+  )
   public AjaxResponse pwdreset(@RequestParam Integer userId) {
     sysuserService.pwdreset(userId);
     return AjaxResponse.success("重置密码成功!");

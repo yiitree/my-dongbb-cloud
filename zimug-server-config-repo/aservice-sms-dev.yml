@@ -30,3 +30,13 @@ management:
     web:
       exposure:
         include: refresh,health
+
+# 全局熔断配置
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        enabled: true
+        requestVolumeThreshold: 20
+        errorThresholdPercentage: 60
+        sleepWindowInMilliseconds: 300000
