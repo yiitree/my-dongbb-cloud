@@ -61,4 +61,16 @@
 #feign:
 #  okhttp:
 #    enabled: true
-
+#  # FeignClient上实现服务降级
+#  hystrix:
+#    enabled: true
+#
+## 全局熔断配置
+#hystrix:
+#  command:
+#    default:
+#      circuitBreaker:
+#        enabled: true
+#        requestVolumeThreshold: 20
+#        errorThresholdPercentage: 60
+#        sleepWindowInMilliseconds: 300000

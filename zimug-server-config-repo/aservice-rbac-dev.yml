@@ -63,11 +63,6 @@ logging:
   level:
     com.zimug.dongbb.cloud.aservice.rbac.feign.SmsService: debug
 
-# 设置feign的客户端
-feign:
-  okhttp:
-    enabled: true
-
 # 表示我们只开放配置刷新接口和健康检查接口
 management:
   endpoints:
@@ -80,6 +75,14 @@ user:
   init:
     password: 123456789
 
+# 设置feign的客户端
+feign:
+  okhttp:
+    enabled: true
+  # FeignClient上实现服务降级
+  hystrix:
+    enabled: true
+
 # 全局熔断配置
 hystrix:
   command:
@@ -89,3 +92,4 @@ hystrix:
         requestVolumeThreshold: 20
         errorThresholdPercentage: 60
         sleepWindowInMilliseconds: 300000
+
