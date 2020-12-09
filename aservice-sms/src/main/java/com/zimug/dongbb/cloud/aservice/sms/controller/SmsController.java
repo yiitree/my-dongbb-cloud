@@ -1,5 +1,6 @@
 package com.zimug.dongbb.cloud.aservice.sms.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zimug.dongbb.cloud.starter.web.exception.AjaxResponse;
 import com.zimug.dongbb.cloud.starter.web.exception.CustomException;
 import com.zimug.dongbb.cloud.starter.web.exception.CustomExceptionType;
@@ -22,6 +23,7 @@ public class SmsController {
      * @param content
      * @return 短信发送结果
      */
+    @HystrixCommand
     @PostMapping(value = "/send")
     public AjaxResponse send(@RequestParam String phoneNo,
                              @RequestParam String content) {
@@ -29,8 +31,8 @@ public class SmsController {
             throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,
                     "消息内容或手机号不能为空！");
         }
+        int i = 1 / 0;
         System.out.println(serverPort + "发送短消息:" + content);
-
         return AjaxResponse.success("短消息发送成功！");
     }
 }

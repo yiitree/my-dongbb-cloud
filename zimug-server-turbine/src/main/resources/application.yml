@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: turbine-server
+server:
+  port: 8773
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://zimug:centerpwd@peer1:8761/eureka/eureka/,http://zimug:centerpwd@peer2:8761/eureka/eureka/,http://zimug:centerpwd@peer3:8761/eureka/eureka/
+turbine:
+  app-config: ASERVICE-SMS,ASERVICE-RBAC
+  cluster-name-expression: new String("default")
+  combine-host-port: true

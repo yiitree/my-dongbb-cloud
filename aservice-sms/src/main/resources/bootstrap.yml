@@ -1,20 +1,21 @@
-spring:
-  application:
-    name: aservice-sms
-  cloud:
-    config:
-      label: springconfig
-      profile: dev
-      # 连接springconfig自带密码
-      username: root
-      password: root
-      discovery:
-        enabled: true  # 开启
-        service-id: zimug-server-config # 指定配置中心服务端的server-id
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
-  instance:
-    preferIpAddress: true
+#spring:
+#  application:
+#    name: aservice-sms
+#  cloud:
+#    config:
+#      label: springconfig
+#      profile: dev
+#      # 连接springconfig自带密码
+#      username: root
+#      password: root
+#      discovery:
+#        enabled: true  # 开启
+#        service-id: zimug-server-config # 指定配置中心服务端的server-id
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
+#  instance:
+#    preferIpAddress: true
+#

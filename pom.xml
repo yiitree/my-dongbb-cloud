@@ -19,6 +19,9 @@
         <module>zimug-server-eureka</module>
         <!-- 配置中心 -->
         <module>zimug-server-config</module>
+        <!-- 熔断监控 -->
+        <module>zimug-server-hystrix-dashboard</module>
+        <module>zimug-server-turbine</module>
 
     </modules>
 

@@ -2,6 +2,7 @@ package com.zimug.dongbb.cloud.starter.web.config;
 
 import com.zimug.dongbb.cloud.starter.web.exception.AjaxResponse;
 import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
@@ -30,6 +31,11 @@ public class GlobalResponseAdvice implements ResponseBodyAdvice {
             if(body instanceof AjaxResponse){
                 return body;
             }else{
+                // 全局异常处理的时候，把自定义返回的code也添加进去
+                AjaxResponse ajaxResponse = AjaxResponse.success(body);
+                response.setStatusCode(HttpStatus.valueOf(
+                        ajaxResponse.getCode())
+                );
                 return AjaxResponse.success(body);
             }
         }

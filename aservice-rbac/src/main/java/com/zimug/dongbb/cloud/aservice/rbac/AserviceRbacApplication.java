@@ -1,5 +1,6 @@
 package com.zimug.dongbb.cloud.aservice.rbac;
 
+import com.zimug.dongbb.cloud.aservice.rbac.feign.FeignClientErrorDecoder;
 import feign.Logger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -26,9 +27,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 // 服务发现，通用方式，其他注册中心也可以用
 //@EnableDiscoveryClient
 // 开启openFeign远程调用
-@EnableFeignClients
+@EnableFeignClients(
+        // 设置异常情况处理，这种设置对全局有效
+        defaultConfiguration = FeignClientErrorDecoder.class
+)
 // 服务熔断
 @EnableCircuitBreaker
+
+
 public class AserviceRbacApplication {
 
 	public static void main(String[] args) {

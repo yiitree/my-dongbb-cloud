@@ -1,23 +1,23 @@
-spring:
-  application:
-    name: aservice-rbac
-  cloud:
-    config:
-      # 对应前配置文件的git分支
-      label: springconfig
-      # 对应前配置文件中的{profile}部分
-      profile: dev
-      # springconfig中springsecurity安全认证
-      username: root
-      password: root
-#      uri: http://localhost:8771
-      discovery:
-        enabled: true  # 开启
-        service-id: zimug-server-config # 指定配置中心服务端的server-id
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
-  instance:
-    preferIpAddress: true
+#spring:
+#  application:
+#    name: aservice-rbac
+#  cloud:
+#    config:
+#      # 对应前配置文件的git分支
+#      label: springconfig
+#      # 对应前配置文件中的{profile}部分
+#      profile: dev
+#      # springconfig中springsecurity安全认证
+#      username: root
+#      password: root
+##      uri: http://localhost:8771
+#      discovery:
+#        enabled: true  # 开启
+#        service-id: zimug-server-config # 指定配置中心服务端的server-id
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://root:root@peer1:8761/eureka/eureka/,http://root:root@peer2:8761/eureka/eureka/,http://root:root@peer3:8761/eureka/eureka/
+#  instance:
+#    preferIpAddress: true

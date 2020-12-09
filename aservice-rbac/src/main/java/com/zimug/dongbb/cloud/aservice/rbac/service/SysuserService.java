@@ -2,6 +2,7 @@ package com.zimug.dongbb.cloud.aservice.rbac.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.netflix.hystrix.exception.HystrixBadRequestException;
 import com.zimug.dongbb.cloud.aservice.rbac.config.DbLoadSysConfig;
 import com.zimug.dongbb.cloud.aservice.rbac.feign.SmsService;
 import com.zimug.dongbb.cloud.starter.persistence.auto.mapper.SysUserMapper;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -106,6 +108,7 @@ public class SysuserService {
     sysUserMapper.deleteByPrimaryKey(userId);
   }
 
+  @Transactional
   public void pwdreset(Integer userId){
     if(userId == null){
       throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,
@@ -125,8 +128,21 @@ public class SysuserService {
         // 使用配置文件中的密码初始值
         sysUser.setPassword(passwordEncoder.encode(defaultPwd));
         sysUserMapper.updateByPrimaryKeySelective(sysUser);
-        // 修改成发送短信
-        smsService.send(sysUser.getPhone(),"您好，管理员已经将您的密码重置为" + defaultPwd);
+
+//        // 最简单的方式：修改成发送短信
+//        // 没此调用远程的时候进行手动校验，是否成功，这种是最简单的方式，没有成功就抛出异常，让事务回滚
+//        AjaxResponse response = smsService.send(sysUser.getPhone(), "您好，管理员已经将您的密码重置为" + defaultPwd);
+//        if(!response.isIsok()){
+//            throw new CustomException(CustomExceptionType.SYSTEM_ERROR,AjaxResponse.success().getMessage());
+//        }
+
+        // 修改为异常捕获，进行异常捕获
+        try {
+            smsService.send(sysUser.getPhone(), "您好，管理员已经将您的密码重置为" + defaultPwd);
+        }catch(HystrixBadRequestException e){
+            throw new CustomException(CustomExceptionType.SYSTEM_ERROR,e.getMessage());
+        }
+
     }
   }
 
