@@ -1,5 +1,6 @@
 package com.zimug.dongbb.cloud.aservice.sms.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.zimug.dongbb.cloud.starter.web.exception.AjaxResponse;
 import com.zimug.dongbb.cloud.starter.web.exception.CustomException;
 import com.zimug.dongbb.cloud.starter.web.exception.CustomExceptionType;
@@ -23,6 +24,9 @@ public class SmsController {
      * @return 短信发送结果
      */
     @PostMapping(value = "/send")
+    @SentinelResource(value = "smsSend",
+            fallbackClass = SmsControllerHandler.class,
+            fallback = "sendFallback")
     public AjaxResponse send(@RequestParam String phoneNo,
                              @RequestParam String content) {
         if(content.isEmpty() || phoneNo.isEmpty()){

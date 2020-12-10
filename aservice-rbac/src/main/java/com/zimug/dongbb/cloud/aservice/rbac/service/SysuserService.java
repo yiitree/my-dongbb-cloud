@@ -1,5 +1,6 @@
 package com.zimug.dongbb.cloud.aservice.rbac.service;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zimug.dongbb.cloud.aservice.rbac.config.DbLoadSysConfig;
@@ -43,6 +44,7 @@ public class SysuserService {
     @Resource
     private DbLoadSysConfig dbLoadSysConfig;
 
+    @SentinelResource("getUserByUserName")
     public SysUser getUserByUserName(String userName){
         if(!StringUtils.isEmpty(userName)){
             SysUserExample sysUserExample = new SysUserExample();

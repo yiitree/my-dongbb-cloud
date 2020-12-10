@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 // eureka大写
 //@FeignClient("ASERVICE-SMS")
 // nacos保持一致
-@FeignClient("aservice-sms")
+//@FeignClient("aservice-sms")
+@FeignClient(name="aservice-sms",fallback = SmsServiceFallback.class)
 public interface SmsService {
 
   @PostMapping(value = "/sms/send")
