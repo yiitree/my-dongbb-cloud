@@ -9,10 +9,16 @@ spring:
 #    loadbalancer:
 #      retry:
 #        enabled: true
-
+    # nacos服务发现
     nacos:
       discovery:
         server-addr: 192.168.1.60:8848
+    # sentinel流量监控
+    sentinel:
+      transport:
+        # 指定应用与Sentinel控制台交互的端口
+        port: 8719
+        dashboard: 192.168.1.60:8774
 ## eureka配置
 #eureka:
 #  client:
