@@ -33,6 +33,7 @@ public class AserviceRbacApplication {
 		SpringApplication.run(AserviceRbacApplication.class, args);
 	}
 
+	// 在通用包中已经添加，所以就不需要在new了
     /**
      * 加密bean
      * @return

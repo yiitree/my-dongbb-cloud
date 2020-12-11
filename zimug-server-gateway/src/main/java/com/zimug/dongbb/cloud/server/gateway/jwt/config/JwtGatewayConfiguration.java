@@ -8,9 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class JwtGatewayConfiguration {
 
-  @Bean
-  public PasswordEncoder passwordEncoder(){
-    return new BCryptPasswordEncoder();
-  }
+    // 解密工具
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }

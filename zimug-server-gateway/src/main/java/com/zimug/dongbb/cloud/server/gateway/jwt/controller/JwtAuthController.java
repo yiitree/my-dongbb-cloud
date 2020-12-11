@@ -24,6 +24,8 @@ import java.util.Map;
  * JWT获取令牌和刷新令牌接口
  */
 @RestController
+// 当ConditionalOnProperty---zimug.gateway.jwt.useDefaultController=true的时候，才初始化JwtAuthController 这个类的Bean
+// 为了后面进行修改，支持oath
 @ConditionalOnProperty(name = "zimug.gateway.jwt.useDefaultController", havingValue = "true")
 public class JwtAuthController {
 

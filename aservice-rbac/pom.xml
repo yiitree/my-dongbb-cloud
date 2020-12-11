@@ -110,6 +110,12 @@
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
 
+<!--        &lt;!&ndash; 微服务内部的权限管理 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.zimug.dongbb.cloud</groupId>-->
+<!--            <artifactId>dbcloud-security-spring-boot-starter</artifactId>-->
+<!--        </dependency>-->
+
 	</dependencies>
 
 	<build>

@@ -16,8 +16,12 @@
         <module>zimug-web-spring-boot-starter</module>
         <!-- 持久层模块 -->
         <module>dbcloud-persistence-spring-boot-starter</module>
+        <!-- 注册中心 -->
         <module>zimug-server-eureka</module>
+        <!-- 网关 -->
         <module>zimug-server-gateway</module>
+        <!-- 微服务内部权限管理模块 -->
+        <module>dbcloud-security-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -39,6 +43,13 @@
             <dependency>
                 <groupId>com.zimug.dongbb.cloud</groupId>
                 <artifactId>dbcloud-persistence-spring-boot-starter</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+            <!-- 权限管理（内部模块） -->
+            <dependency>
+                <groupId>com.zimug.dongbb.cloud</groupId>
+                <artifactId>dbcloud-security-spring-boot-starter</artifactId>
                 <version>1.0</version>
             </dependency>
 

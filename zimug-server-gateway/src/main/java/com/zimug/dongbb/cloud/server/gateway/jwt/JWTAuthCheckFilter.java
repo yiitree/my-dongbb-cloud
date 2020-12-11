@@ -21,6 +21,9 @@ import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * 全局过滤器，所有访问都要先检验令牌
+ * 检验是否登录
+ *
  * 全局令牌检验过滤器，检验是否有登录
  * 验证JWT的合法性，对于不合法请求直接返回，不予转发。
  * 对于JWT合法的情况，从JWT中解析出userId（用户身份信息），并放入HTTP header中。（网关后面的服务会用到，下一节）
@@ -34,8 +37,7 @@ public class JWTAuthCheckFilter {
 
   @Bean
   @Order(-101)
-  public GlobalFilter jwtAuthGlobalFilter()
-  {
+  public GlobalFilter jwtAuthGlobalFilter() {
     return (exchange, chain) -> {
       ServerHttpRequest serverHttpRequest = exchange.getRequest();
       ServerHttpResponse serverHttpResponse = exchange.getResponse();
