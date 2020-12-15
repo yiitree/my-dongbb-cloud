@@ -18,7 +18,7 @@ public class DbLoadSysConfig implements CommandLineRunner {
   private  List<SysConfig> sysConfigList;
 
   //根据参数key，获取参数值
-  public  String getConfigItem(String paramKey){
+  public String getConfigItem(String paramKey){
     Optional<SysConfig> temp =  sysConfigList.stream()
       .filter(str -> str.getParamKey().equals(paramKey))
       .findFirst();

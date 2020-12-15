@@ -4,7 +4,6 @@ import feign.Logger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication(
-        scanBasePackages={"com.zimug.dongbb.cloud"},
-        exclude = {SecurityAutoConfiguration.class}
+        scanBasePackages={"com.zimug.dongbb.cloud.aservice.rbac"}
+//        exclude = {SecurityAutoConfiguration.class}
 )
-@MapperScan(basePackages = {"com.zimug.dongbb.cloud.**.mapper"})
+@MapperScan(basePackages = {"com.zimug.dongbb.cloud.**"})
 // 相关功能会放到网关中，aservice-rbac中将spring security的安全认证自动配置功能排除掉（不生效）
 //@EnableAutoConfiguration(exclude = {
 //		SecurityAutoConfiguration.class

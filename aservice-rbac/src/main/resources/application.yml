@@ -27,7 +27,6 @@ spring:
         # 指定应用与Sentinel控制台交互的端口
         port: 8719
         dashboard: 192.168.1.60:8774
-#        dashboard: 192.168.1.66:8080
 
 # debug: true
 mybatis:
@@ -86,6 +85,6 @@ zimug:
   security:
     csrfDisabled: true
     devOpeningURI:
-      - /sysuser/info    # 服务开发阶段不想去配置数据库用户、角色、权限。临时开放接口访问
+#      - /sysuser/info    # 服务开发阶段不想去配置数据库用户、角色、权限。临时开放接口访问
     permitAllURI:
       - /xxxx/yyyy   #公开访问的接口
